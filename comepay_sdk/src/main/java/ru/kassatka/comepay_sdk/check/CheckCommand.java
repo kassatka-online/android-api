@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ru.kassatka.comepay_sdk.CreateExtraJson;
 import ru.kassatka.comepay_sdk.callBack.CallBack;
@@ -50,6 +51,11 @@ public final class CheckCommand {
     public void RemoveItemsCommand(@Nullable ArrayList<ProductItems> changes, @Nullable Extra extra){
         extra.putExtra("Lines", CreateExtraJson.createProduct(changes));
         CreateExtraJson.createProduct(changes);
+    }
+
+    public void RemoveCommand(@Nullable ArrayList<UUID> changes, @Nullable Extra extra){
+        extra.putExtra("REMOVE", CreateExtraJson.addUUIDS(changes));
+        CreateExtraJson.addUUIDS(changes);
     }
 
     public void CloseCheckCommand(@Nullable Extra extra) {
