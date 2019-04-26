@@ -142,40 +142,7 @@ public  class ProductItems {
         SINGLE_AGRICULTURE, //Единый сельскохозяйственный налог(16)
         PATENT // Патентная система налогообложения(32)
     }
-
-
-
-
-    public enum GoodAttributesType {
-        PRODUCT((short) 1, "ТОВАР"),
-        EXCISABLE_GOODS((short) 2, "ПОДАКЦИЗНЫЙ ТОВАР"),
-        WORK((short) 3, "РАБОТА"),
-        SERVICE((short) 4, "УСЛУГА"),
-        BET_GAMBLING((short) 5, "СТАВКА АЗАРТНОЙ ИГРЫ"),
-        WIN_GAMBLING((short) 6, "ВЫИГРЫШ АЗАРТНОЙ ИГРЫ"),
-        LOTTERY_TICKET((short) 7, "ЛОТЕРЕЙНЫЙ БИЛЕТ"),
-        WINNING_LOTTERY((short) 8, "ВЫИГРЫШ ЛОТЕРЕИ"),
-        INTELLECTUAL_PROPERTY_RESULTS((short) 9, "ПРЕДОСТАВЛЕНИЕ РИД"),
-        PAYMENT_OR_PAYOUT((short) 10, "ПЛАТЕЖ ИЛИ ВЫПЛАТА"),
-        AGENT_S_COMMISSION((short) 11, "АГЕНТСКОЕ ВОЗНАГРАЖДЕНИЕ"),
-        COMPOSITE((short) 12, "СОСТАВНОЙ ПРЕДМЕТ РАСЧЕТА"),
-        OTHER((short) 13, "ИНОЙ ПРЕДМЕТ РАСЧЕТА");
-
-        public final short id;
-        public final String name;
-
-        GoodAttributesType(short id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-
-    }
-
+    
     public enum VatType {
         NONE,
         VAT_0,
