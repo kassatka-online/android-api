@@ -1,9 +1,15 @@
 package ru.kassatka.comepay_sdk;
 
+import android.content.ClipData;
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -37,6 +43,7 @@ public final class CreateExtraJson {
         }
         return array;
     }
+
 
     public static JsonArray createProduct(ArrayList<ProductItems> items){
         array = new JsonArray();
@@ -200,6 +207,30 @@ public final class CreateExtraJson {
             }
         }
         return array;
+    }
+
+    public static ArrayList<ProductItems> DeserializeJsomStringToListItems(String jsonItems){
+        ArrayList<ProductItems> productItems = new ArrayList<>();
+        try {
+            JSONObject obj = new JSONObject(jsonItems);
+            JSONArray array = new JSONArray( obj.get("Lines").toString());
+            for (int i = 0; i < array.length(); i++) {
+                productItems.add(DeserializeJsomStringToItem(array.getJSONObject(i)));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return productItems;
+     //   Gson gson = new Gson();
+       // return gson.fromJson(jsonItems, (Type) Item[].class);
+    }
+
+    public static ProductItems DeserializeJsomStringToItem(JSONObject item){
+        return new ProductItems(item);
+
+
+        //  Gson gson = new Gson();
+      //  return gson.fromJson(jsonItems, (Type) Item.class);
     }
 
     private static void addProductJson(JsonObject jsonObject) {
