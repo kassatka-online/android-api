@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.UUID;
 
 /**
  * Created by sokolov on 23.07.2018.
@@ -13,7 +14,7 @@ import java.math.RoundingMode;
 public  class ProductItems {
 
     public String name;
-
+    public UUID uuid;
     public String barcode;
     public String group;
     public int color;
@@ -45,12 +46,13 @@ public  class ProductItems {
 
     public ProductItems(){}
 
-    public ProductItems(JSONObject object) throws JSONException {
-        name = object.getString("Name");
-        extId = object.getString("ExtId");
-        group = object.getString("Group");
-        price = object.getDouble("Price");
+    public ProductItems(JSONObject object)  {
         try{
+            uuid = UUID.fromString(object.getString("UUID"));
+            name = object.getString("Name");
+            extId = object.getString("ExtId");
+            group = object.getString("Group");
+            price = object.getDouble("Price");
             count = object.getInt("Qty");
         }catch (Exception e){
 
@@ -142,7 +144,7 @@ public  class ProductItems {
         SINGLE_AGRICULTURE, //Единый сельскохозяйственный налог(16)
         PATENT // Патентная система налогообложения(32)
     }
-    
+
     public enum VatType {
         NONE,
         VAT_0,

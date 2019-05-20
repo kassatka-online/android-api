@@ -48,6 +48,12 @@ public final class CheckCommand {
         this.extra = extra;
     }
 
+    public  void updateItemsCommand(@Nullable ArrayList<ProductItems> changes, @Nullable Extra extra){
+       // Todo: Проверка на наличие UUID
+        extra.putExtra("Lines", CreateExtraJson.createProduct(changes));
+        this.extra = extra;
+    }
+
     public void RemoveItemsCommand(@Nullable ArrayList<ProductItems> changes, @Nullable Extra extra){
         extra.putExtra("Lines", CreateExtraJson.createProduct(changes));
         CreateExtraJson.createProduct(changes);
