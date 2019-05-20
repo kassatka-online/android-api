@@ -47,7 +47,9 @@ public final class CheckCommand {
         extra.putExtra("Lines", CreateExtraJson.createProduct(changes));
         this.extra = extra;
     }
-
+    public void revertCommand(@Nullable Extra extra){
+        this.extra = extra;
+    }
     public  void updateItemsCommand(@Nullable ArrayList<ProductItems> changes, @Nullable Extra extra){
        // Todo: Проверка на наличие UUID
         extra.putExtra("Lines", CreateExtraJson.createProduct(changes));

@@ -13,13 +13,17 @@ public class KassatkaGetCartReceiver extends BroadcastReceiver {
     public static final String JSON_LIST_ITEMS= "JSON_PRODUCTS";
     public static final String JSON_ITEM = "JSON_PRODUCT";
     public String packageName = "PACKAGE_NAME";
-    public String RESEIVE_ITEMS = "ru.kassa.cart." + packageName;
+    public static final String PACKAGE_NAME = "PACKAGE_NAME";
+    public static final String COMMAND = "kassa.action.send.get.cart.command";
+
+    public String RESEIVE_ITEMS = "ru.kassa.cart.";
 
     Listener listener;
 
     public KassatkaGetCartReceiver(Listener listener, String packageName){
         this.listener = listener;
         this.packageName = packageName;
+        RESEIVE_ITEMS +=packageName;
     }
 
     @Override
