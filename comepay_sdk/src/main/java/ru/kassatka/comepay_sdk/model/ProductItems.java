@@ -35,7 +35,7 @@ public  class ProductItems {
     //Система налогобложения
     public TaxMode taxMode = TaxMode.DEFAULT;
     public ProductType productType;
-    public GoodAttributesType goodType;
+    public GoodAttributesType goodType = GoodAttributesType.SERVICE;
     public PayAttributesType payAttributesType;
     public AgentType agentsType;
     public double alcoholByVolume; //Крепость.

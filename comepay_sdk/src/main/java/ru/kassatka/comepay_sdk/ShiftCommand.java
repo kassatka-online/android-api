@@ -17,6 +17,12 @@ public final class ShiftCommand {
 
     private Extra extra;
     public void PrintXReport(Extra extra){
+        extra.putExtra("ACTION", "X_REPORT");
+        this.extra = extra;
+    }
+
+    public void PrintZReport(Extra extra){
+        extra.putExtra("ACTION", "Z_REPORT");
         this.extra = extra;
     }
 
