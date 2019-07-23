@@ -145,11 +145,32 @@ public final class CreateExtraJson {
                             case PAYMENT_OR_PAYOUT:
                                 productJson.addProperty("LineAttribute", 10);
                                 break;
-                            case COMPOSITE:
+                            case AGENT_S_COMMISSION:
                                 productJson.addProperty("LineAttribute", 11);
                                 break;
-                            case OTHER:
+                            case COMPOSITE:
                                 productJson.addProperty("LineAttribute", 12);
+                                break;
+                            case OTHER:
+                                productJson.addProperty("LineAttribute", 13);
+                                break;
+                            case PROPERTY_LAW:
+                                productJson.addProperty("LineAttribute", 14);
+                                break;
+                            case NON_SALE_INCOME:
+                                productJson.addProperty("LineAttribute", 15);
+                                break;
+                            case INSURANCE_CONTRIBUTIONS:
+                                productJson.addProperty("LineAttribute", 16);
+                                break;
+                            case TRADE_FEE:
+                                productJson.addProperty("LineAttribute", 17);
+                                break;
+                            case RESORT_FEE:
+                                productJson.addProperty("LineAttribute", 18);
+                                break;
+                            case PLEDGE:
+                                productJson.addProperty("LineAttribute", 19);
                                 break;
                         }
                     }
@@ -196,6 +217,12 @@ public final class CreateExtraJson {
                             break;
                         case VAT_20:
                             productJson.addProperty("TaxId", 1);
+                            break;
+                        case VAT_10_110:
+                            productJson.addProperty("TaxId", 6);
+                            break;
+                        case VAT_20_120:
+                            productJson.addProperty("TaxId", 5);
                             break;
                     }
                     addProductJson(productJson);

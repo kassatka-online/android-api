@@ -111,8 +111,13 @@ public  class ProductItems {
         PAYMENT_OR_PAYOUT((short) 10, "ПЛАТЕЖ ИЛИ ВЫПЛАТА"),
         AGENT_S_COMMISSION((short) 11, "АГЕНТСКОЕ ВОЗНАГРАЖДЕНИЕ"),
         COMPOSITE((short) 12, "СОСТАВНОЙ ПРЕДМЕТ РАСЧЕТА"),
-        OTHER((short) 13, "ИНОЙ ПРЕДМЕТ РАСЧЕТА");
-
+        OTHER((short) 13, "ИНОЙ ПРЕДМЕТ РАСЧЕТА"),
+        PROPERTY_LAW((short) 14, "ИМУЩЕСТВЕННОЕ ПРАВО"),
+        NON_SALE_INCOME((short) 15, "ВНЕРЕАЛИЗАЦИОННЫЙ ДОХОД"),
+        INSURANCE_CONTRIBUTIONS((short) 16, "СТРАХОВЫЕ ВЗНОСЫ"),
+        TRADE_FEE((short) 17, "ТОРГОВЫЙ СБОР"),
+        RESORT_FEE((short) 18, "КУРОРТНЫЙ СБОР"),
+        PLEDGE((short) 19, "ЗАЛОГ");
         public final short id;
         public final String name;
 
@@ -149,7 +154,9 @@ public  class ProductItems {
         NONE,
         VAT_0,
         VAT_10,
-        VAT_20;
+        VAT_20,
+        VAT_10_110,
+        VAT_20_120;
     }
 }
 

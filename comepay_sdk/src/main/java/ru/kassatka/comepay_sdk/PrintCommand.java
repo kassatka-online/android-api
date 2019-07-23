@@ -39,4 +39,10 @@ public class PrintCommand {
                 .putExtra("Json", CreateExtraJson.createJson(extra.getExtra(),context))
         );
     }
+    public void startCommand(Context context){
+        context.sendBroadcast(new Intent("kassa.action.send.print.command").
+                putExtra("PackageName", context.getPackageName())
+                .putExtra("Json", CreateExtraJson.createJson(extra.getExtra(),context))
+        );
+    }
 }

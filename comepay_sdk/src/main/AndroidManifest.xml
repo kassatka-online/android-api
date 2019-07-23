@@ -1,2 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.kassatka.comepay_sdk" />
+    package="ru.kassatka.comepay_sdk" >
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <receiver android:name=".callBack.CallBackReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="action.get.device.status" />
+                <action android:name="action.get.ofd.status" />
+                <action android:name="ru.kassa.action.close.check" />
+                <action android:name="ru.kassa.action.check.close" />
+                <action android:name="ru.kassa.action.check.print.error" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

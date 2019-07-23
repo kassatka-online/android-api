@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import ru.kassatka.comepay_sdk.CreateExtraJson;
 import ru.kassatka.comepay_sdk.callBack.CallBack;
+import ru.kassatka.comepay_sdk.callBack.CallBackCloseCheck;
 import ru.kassatka.comepay_sdk.callBack.CallbackHandler;
 import ru.kassatka.comepay_sdk.model.Complex;
 import ru.kassatka.comepay_sdk.model.Extra;
@@ -26,6 +27,10 @@ public final class CheckCommand {
 
     public  void openCheckCommand(@Nullable Extra extra){
 
+        this.extra = extra;
+    }
+
+    public void addExtraCommand(@Nullable Extra extra){
         this.extra = extra;
     }
 
@@ -70,7 +75,13 @@ public final class CheckCommand {
         this.extra = extra;
     }
 
-    public void startCommand(Context context, CallBack callBack){
+    public void startCommand(Context context){
+        context.sendBroadcast(new Intent("kassa.action.send.check.command")
+                .putExtra("PackageName", context.getPackageName())
+                .putExtra("Json", CreateExtraJson.createJson(extra.getExtra(),context)));
+    }
+
+    public void startCommand(Context context, CallBackCloseCheck callBack){
 
         context.sendBroadcast(new Intent("kassa.action.send.check.command")
                 .putExtra("PackageName", context.getPackageName())

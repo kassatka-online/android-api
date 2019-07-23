@@ -30,6 +30,13 @@ public final class ShiftCommand {
         this.extra = extra;
     }
 
+    public void startCommand(Context context){
+        context.sendBroadcast(new Intent("kassa.action.send.shift.command")
+                .putExtra("PackageName", context.getPackageName())
+                .putExtra("Json", CreateExtraJson.createJson(extra.getExtra(),context))
+        );
+    }
+
     public void startCommand(Context context, CallBack callBack){
         context.sendBroadcast(new Intent("kassa.action.send.shift.command")
                 .putExtra("PackageName", context.getPackageName())
