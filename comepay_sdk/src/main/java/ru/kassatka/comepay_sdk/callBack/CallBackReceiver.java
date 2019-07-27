@@ -42,10 +42,10 @@ public class CallBackReceiver extends BroadcastReceiver {
 //                break;
 
             case ShiftCloseError:
-                 statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
-                 statusPrint = new StatusPrint();
+                statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
+                statusPrint = new StatusPrint();
 
-                 if(intent.hasExtra("ErrorMessage"))
+                if(intent.hasExtra("ErrorMessage"))
                     statusPrint.error = intent.getStringExtra("ErrorMessage");
 
                 statusPrint.status = "Не успешно";
@@ -53,64 +53,88 @@ public class CallBackReceiver extends BroadcastReceiver {
                 break;
 
             case ShiftClose:
-                 statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
-                 statusPrint = new StatusPrint();
-                 statusPrint.error="";
-                 statusPrint.status = "Успешно";
+                statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
+                statusPrint = new StatusPrint();
+                statusPrint.error="";
+                statusPrint.status = "Успешно";
                 // statusListener.getStatus(statusPrint);
 
                 break;
             case CheckClose:
-                CallBackCloseCheck callBackCloseCheck = (CallBackCloseCheck) CallbackHandler.instance.listeners.get("Check");
-                 statusPrint = new StatusPrint();
-                if(intent.hasExtra("Error"))
-                    statusPrint.error = intent.getStringExtra("Error");
+                try {
+                    CallBackCloseCheck callBackCloseCheck = (CallBackCloseCheck) CallbackHandler.instance.listeners.get("Check");
+                    statusPrint = new StatusPrint();
+                    if(intent.hasExtra("Error"))
+                        statusPrint.error = intent.getStringExtra("Error");
 
-                if(intent.hasExtra("ID"))
-                    statusPrint.id = intent.getLongExtra("ID", -1);
+                    if(intent.hasExtra("ID"))
+                        statusPrint.id = intent.getLongExtra("ID", -1);
 
-                if(intent.hasExtra("CheckId"))
-                    statusPrint.checkID = intent.getLongExtra("CheckId", -1);
+                    if(intent.hasExtra("CheckId"))
+                        statusPrint.checkID = intent.getLongExtra("CheckId", -1);
 
-                if(intent.hasExtra("Text"))
-                    statusPrint.text = intent.getStringExtra("Text");
+                    if(intent.hasExtra("Text"))
+                        statusPrint.text = intent.getStringExtra("Text");
 
-                if(intent.hasExtra("QR"))
-                    statusPrint.qr = intent.getStringExtra("QR");
+                    if(intent.hasExtra("QR"))
+                        statusPrint.qr = intent.getStringExtra("QR");
 
-                if(intent.hasExtra("DOC_TYPE"))
-                    statusPrint.docType = intent.getStringExtra("DOC_TYPE");
+                    if(intent.hasExtra("DOC_TYPE"))
+                        statusPrint.docType = intent.getStringExtra("DOC_TYPE");
 
-                if(intent.hasExtra("Status"))
-                    statusPrint.status = intent.getStringExtra("Status");
-                callBackCloseCheck.getStatus(statusPrint);
+                    if(intent.hasExtra("Status"))
+                        statusPrint.status = intent.getStringExtra("Status");
+                    callBackCloseCheck.getStatus(statusPrint);
+                }catch (Exception e){
+
+                }
                 break;
             case Check:
-                listener = (CallbackListener) CallbackHandler.instance.listeners.get("Check");
+                try {
+                    listener = (CallbackListener) CallbackHandler.instance.listeners.get("Check");
 
-                if(bundle.getInt("ErrorCode") == 0){
-                    listener.OnSuccess( bundle.getString("Response"));
-                }else {
-                    listener.OnError(bundle.getInt("ErrorCode"), bundle.getString("ErrorMessage"));
+                    if(bundle.getInt("ErrorCode") == 0){
+                        listener.OnSuccess( bundle.getString("Response"));
+                    }else {
+                        listener.OnError(bundle.getInt("ErrorCode"), bundle.getString("ErrorMessage"));
+                    }
+                }catch (Exception e){
+
                 }
                 break;
             case Report:
-                CallBackPrint reportListener = (CallBackPrint) CallbackHandler.instance.listeners.get("Shift");
-                reportListener.result(bundle.getBoolean("PrintReport"));
+                try {
+                    CallBackPrint reportListener = (CallBackPrint) CallbackHandler.instance.listeners.get("Shift");
+                    reportListener.result(bundle.getBoolean("PrintReport"));
+                }catch (Exception e){
+
+                }
                 break;
             case Status:
-                statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
-                statusListener.OnSuccess( bundle.getLong("Shift"), bundle.getBoolean("IsOpen"));
-                statusListener.OnError(bundle.getString("Error"));
+                try{
+                    statusListener = (ShiftCallBack) CallbackHandler.instance.listeners.get("Shift");
+                    statusListener.OnSuccess( bundle.getLong("Shift"), bundle.getBoolean("IsOpen"));
+                    statusListener.OnError(bundle.getString("Error"));
+                }catch (Exception e){
+
+                }
                 break;
             case Print:
-                CallBackPrint printListener = (CallBackPrint) CallbackHandler.instance.listeners.get("Print");
-                printListener.result(bundle.getBoolean("IsPrint"));
+                try{
+                    CallBackPrint printListener = (CallBackPrint) CallbackHandler.instance.listeners.get("Print");
+                    printListener.result(bundle.getBoolean("IsPrint"));
+                }catch (Exception e){
+
+                }
                 break;
             case Discount:
-                DiscountCallBack discountCallBack = (DiscountCallBack) CallbackHandler.instance.listeners.get("Discount");
-                discountCallBack.OnSuccess(intent.getExtras().getBoolean("IsSetDiscount"));
-                discountCallBack.OnError(intent.getExtras().getString("Error"));
+                try{
+                    DiscountCallBack discountCallBack = (DiscountCallBack) CallbackHandler.instance.listeners.get("Discount");
+                    discountCallBack.OnSuccess(intent.getExtras().getBoolean("IsSetDiscount"));
+                    discountCallBack.OnError(intent.getExtras().getString("Error"));
+                }catch (Exception e){
+
+                }
                 break;
         }
     }

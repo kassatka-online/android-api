@@ -28,7 +28,6 @@ public  class ProductItems {
     public String unit;
     public boolean isFavorite;
     public byte agentType;
-    public GoodAttributesType goodAttributesType;
     public boolean isRemaindersControl;
     public double currentRemainders;
     public double discount;
