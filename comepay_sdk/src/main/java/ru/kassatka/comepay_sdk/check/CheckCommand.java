@@ -7,15 +7,19 @@ import android.support.annotation.Nullable;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import ru.kassatka.comepay_sdk.CreateExtraJson;
 import ru.kassatka.comepay_sdk.callBack.CallBack;
 import ru.kassatka.comepay_sdk.callBack.CallBackCloseCheck;
 import ru.kassatka.comepay_sdk.callBack.CallbackHandler;
+import ru.kassatka.comepay_sdk.model.CloudReceiptComplex;
 import ru.kassatka.comepay_sdk.model.Complex;
 import ru.kassatka.comepay_sdk.model.Extra;
+import ru.kassatka.comepay_sdk.model.ProductComplex;
 import ru.kassatka.comepay_sdk.model.ProductItems;
+import ru.kassatka.comepay_sdk.model.ReceiptComplex;
 
 
 /**
@@ -68,6 +72,7 @@ public final class CheckCommand {
 
     public void RemoveCommand(@Nullable ArrayList<UUID> changes, @Nullable Extra extra){
         extra.putExtra("REMOVE", CreateExtraJson.addUUIDS(changes));
+        this.extra = extra;
         CreateExtraJson.addUUIDS(changes);
     }
 
@@ -87,5 +92,21 @@ public final class CheckCommand {
                 .putExtra("PackageName", context.getPackageName())
                 .putExtra("Json", CreateExtraJson.createJson(extra.getExtra(),context)));
         CallbackHandler.instance.listeners.put("Check", callBack);
+    }
+
+    public void sendComplex(Context context, ReceiptComplex receiptComplex) {
+        context.sendBroadcast(
+                new Intent("kassa.action.send.check.complex")
+                        .putExtra("packageName", context.getPackageName())
+                        .putExtra("receipt", receiptComplex)
+        );
+    }
+
+    public void sendComplexCloud(Context context, CloudReceiptComplex receiptComplex) {
+        context.sendBroadcast(
+                new Intent("kassa.action.send.check.complex.cloud")
+                        .putExtra("packageName", context.getPackageName())
+                        .putExtra("receipt", receiptComplex)
+        );
     }
 }

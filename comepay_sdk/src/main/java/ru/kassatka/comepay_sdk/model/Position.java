@@ -7,7 +7,7 @@ import java.util.UUID;
 /**
  * Created by sokolov on 15.08.2018.
  */
-
+@Deprecated
 public class Position {
     private UUID uuid;
     private Long id;
